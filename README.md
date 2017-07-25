@@ -1,1 +1,1 @@
-# new_centos_build
+# new centos setup with word press
