@@ -1,0 +1,39 @@
+version: '2'
+services:
+ web:
+    image: wordpress
+    links:
+     - mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD='Qas6d4z8H#DAj&xD'
+     - VIRTUAL_HOST=neudorfer.tech
+    network_mode: "bridge"
+    ports:
+     - "127.0.0.1:8081:80"
+    working_dir: /var/www/html
+    volumes:
+     - /wordpress/wp-content/:/var/www/html/wp-content
+ mysql:
+    image: mysql:5.7
+    ports:
+     - "127.0.0.1:3306:3306"
+    environment:
+     - MYSQL_ROOT_PASSWORD='rG1sQas6d4z8H#DAj&xD'
+     - MYSQL_DATABASE=wordpress
+    network_mode: "bridge"
+ phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  links:
+    - mysql
+  ports:
+    - 8080:80
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: rG1sQas6d4z8H#DAj&xD
+    network_mode: "bridge"
+ nginx:
+    image: jwilder/nginx-proxy
+    ports:
+     - 80:80
+    volumes:
+     - /var/run/docker.sock:/tmp/docker.sock:ro
