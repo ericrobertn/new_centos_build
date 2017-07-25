@@ -12,11 +12,11 @@ systemctl enable fail2ban
 systemctl start sendmail
 systemctl enable sendmail
 cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+mv /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "
 [DEFAULT]
  
-ignoreip = 127.0.0.1
+ignoreip = 127.0.0.1 
 bantime  = 3600
 banaction = iptables-multiport
 findtime  = 600
@@ -27,4 +27,4 @@ destemail = eneudorfer@gmail.com
 sendername = Fail2Ban
 mta = sendmail" >>  /etc/fail2ban/jail.conf
 systemctl restart fail2ban
-service sshd restart
+systemctl restart sshd
