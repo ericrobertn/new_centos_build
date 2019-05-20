@@ -5,8 +5,8 @@ services:
     links:
      - mysql
     environment:
-     - WORDPRESS_DB_PASSWORD='Qas6d4z8H#DAj&xD'
-     - VIRTUAL_HOST=neudorfer.tech
+     - WORDPRESS_DB_PASSWORD='changeme'
+     - VIRTUAL_HOST=something.com
     network_mode: "bridge"
     ports:
      - "127.0.0.1:8081:80"
@@ -18,7 +18,7 @@ services:
     ports:
      - "127.0.0.1:3306:3306"
     environment:
-     - MYSQL_ROOT_PASSWORD='rG1sQas6d4z8H#DAj&xD'
+     - MYSQL_ROOT_PASSWORD='changeme'
      - MYSQL_DATABASE=wordpress
     network_mode: "bridge"
  phpmyadmin:
@@ -29,7 +29,7 @@ services:
     - 8080:80
   environment:
     MYSQL_USERNAME: root
-    MYSQL_ROOT_PASSWORD: rG1sQas6d4z8H#DAj&xD
+    MYSQL_ROOT_PASSWORD: changeme
     network_mode: "bridge"
  nginx:
     image: jwilder/nginx-proxy
